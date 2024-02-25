@@ -1,24 +1,31 @@
-const express = require("express")
-const { pool } = require("./config/db")
+import cors from "cors"
+import express from "express"
+import authRoute from "./routes/auth.js"
 
 const app = express()
+const PORT = 5000
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cors({ origin: "*" }))
 
 app.get("/", (req, res) => {
   res.send("Hello World")
 })
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000")
+app.use("/auth", authRoute)
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
 })
 
-async function getData() {
-  const data = await pool.query("select * from emp", (err, res) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log(res.rows)
-    }
-  })
-}
+// async function getData() {
+//   pool.query("select * from rescuer", (err, res) => {
+//     if (err) {
+//       console.log(err)
+//     } else {
+//       console.log(res.rows)
+//     }
+//   })
+// }
 
-getData()
+// getData()

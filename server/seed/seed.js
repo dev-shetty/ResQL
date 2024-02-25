@@ -1,7 +1,10 @@
-const { pool } = require("../config/db")
-const fs = require("fs")
-const path = require("path")
+import fs from "fs"
+import path from "path"
+import { pool } from "../config/db"
 
+/**
+ * @description Seeds the postgres database with predefined data given in seed/migrate.sql file
+ */
 async function seedDatabase() {
   try {
     const sqlQueries = fs.readFileSync(
