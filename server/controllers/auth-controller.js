@@ -1,7 +1,7 @@
 import bcryptjs from "bcryptjs"
 import { pool } from "../config/db.js"
 import { loginSchema, rescuerSchema } from "../lib/schemas.js"
-import { filterObject, hashPassword } from "../lib/utils.js"
+import { filterObject, generateToken, hashPassword } from "../lib/utils.js"
 
 /**
  * @route POST /auth/rescuer/create
@@ -120,10 +120,22 @@ export async function login(req, res) {
       return res.status(400).json({ error: "Invalid credentials" })
     }
 
-    res.status(200).json({
-      message: "Logged in successfully",
-      user: filterObject(user.rows[0], ["password"]),
+    const _user = filterObject(user.rows[0], ["password"])
+    const token = generateToken({
+      email: loginCreds.email,
+      type: loginCreds.type,
     })
+
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+      })
+      .status(200)
+      .json({
+        message: "Logged in successfully",
+        user: _user,
+      })
   } catch (error) {
     return res.status(500).json({ error: error.message })
   }

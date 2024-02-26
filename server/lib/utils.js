@@ -1,4 +1,5 @@
 import bcryptjs from "bcryptjs"
+import jwt from "jsonwebtoken"
 import { customAlphabet } from "nanoid"
 
 /**
@@ -41,4 +42,10 @@ export function filterObject(object, flags) {
     delete filteredObject[flag]
   })
   return filteredObject
+}
+
+export function generateToken(user) {
+  return jwt.sign({ user }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  })
 }
