@@ -1,0 +1,8 @@
+
+.disaster-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+    margin-left: 6%;
+    margin-top: 50px;
+}
