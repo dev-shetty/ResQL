@@ -3,6 +3,7 @@ import cors from "cors"
 import express from "express"
 import authRoute from "./routes/auth-route.js"
 import disasterRoute from "./routes/disaster-route.js"
+import rescuerRoute from "./routes/rescuer-route.js"
 
 const app = express()
 const PORT = 5000
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 
 app.use("/auth", authRoute)
 app.use("/disaster", disasterRoute)
+app.use("/rescuer", rescuerRoute)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
