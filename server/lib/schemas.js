@@ -19,3 +19,17 @@ export const loginSchema = z.object({
   password: z.string(),
   type: z.enum(TYPES_OF_USER).default("rescuer"),
 })
+
+export const disasterSchema = z.object({
+  id: z.string().default(generate_nanoId(LENGTH_OF_ID, "DIS")),
+  authority_id: z.string(),
+  type: z.string(),
+  name: z.string(),
+  description: z.string(),
+  date: z.string(),
+  city: z.string(),
+  state: z.string(),
+  country: z.string(),
+  people_affected: z.number(),
+  severity: z.number(),
+})
