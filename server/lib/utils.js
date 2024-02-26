@@ -22,7 +22,23 @@ export function generate_nanoId(length, prefix) {
  * @param {string} password - Original Password
  * @returns {string} Hashed password
  */
+
 export async function hashPassword(password) {
   const salt = 10
   return await bcryptjs.hash(password, salt)
+}
+
+/**
+ * @description Filters object by removing the keys mentioned
+ * @param {object} object - Object to get filtered
+ * @param {string[]} flags - Array of keys which are to be removed
+ * @returns {object} Filtered object
+ */
+
+export function filterObject(object, flags) {
+  const filteredObject = { ...object }
+  flags.forEach((flag) => {
+    delete filteredObject[flag]
+  })
+  return filteredObject
 }

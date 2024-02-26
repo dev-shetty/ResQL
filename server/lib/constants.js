@@ -6,3 +6,5 @@ export const SKILLS = [
   "Fire Fighting",
   "Communication",
 ]
+
+export const TYPES_OF_USER = ["rescuer", "authority", "organization"]
