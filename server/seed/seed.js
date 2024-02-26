@@ -1,12 +1,14 @@
 import fs from "fs"
 import path from "path"
-import { pool } from "../config/db"
+import { fileURLToPath } from "url"
+import { pool } from "../config/db.js"
 
 /**
  * @description Seeds the postgres database with predefined data given in seed/migrate.sql file
  */
 async function seedDatabase() {
   try {
+    const __dirname = path.dirname(fileURLToPath(import.meta.url))
     const sqlQueries = fs.readFileSync(
       path.join(__dirname, "migrate.sql"),
       "utf8"
