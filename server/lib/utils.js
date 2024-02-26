@@ -1,3 +1,4 @@
+import bcryptjs from "bcryptjs"
 import { customAlphabet } from "nanoid"
 
 /**
@@ -7,7 +8,7 @@ import { customAlphabet } from "nanoid"
  * @returns {string} Random Id of desired length and prefix
  */
 
-function generate_nanoId(length, prefix) {
+export function generate_nanoId(length, prefix) {
   const length_to_generate = length - prefix.length
   const nanoid = customAlphabet(
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
@@ -16,4 +17,12 @@ function generate_nanoId(length, prefix) {
   return `${prefix}${nanoid()}`
 }
 
-console.log(generate_nanoId(7, ""))
+/**
+ * @description Hashes password
+ * @param {string} password - Original Password
+ * @returns {string} Hashed password
+ */
+export async function hashPassword(password) {
+  const salt = 10
+  return await bcryptjs.hash(password, salt)
+}

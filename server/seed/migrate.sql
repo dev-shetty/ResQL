@@ -66,6 +66,7 @@ CREATE TABLE RESCUER(
     phone varchar(10),
     email varchar(50) NOT NULL,
     city varchar(20) NOT NULL,
+    password text NOT NULL,
     state varchar(20),
     country varchar(20)
 );
@@ -130,13 +131,13 @@ VALUES
     ('D4O5N6A7', 'ORG4U567', 'Vivaan Gupta', 2000.00),
     ('D8O9N1E2', 'ORGS9123', 'Ishaan Kumar', 6000.00);
 
-INSERT INTO RESCUER (id, name, phone, email, city, state, country) 
+INSERT INTO RESCUER (id, name, phone, email, city, password, state, country) 
 VALUES 
-    ('R1E2S3C4', 'Deveesh Shetty', '9876543210', 'suresh@example.com', 'Mangalore', 'Karnataka', 'India'),
-    ('R5E6S7C8', 'Rohan', '8765432109', 'ananya@example.com', 'Puttur', 'Karnataka', 'India'),
-    ('R9E1S2C3', 'Rahul Singh', '7654321098', 'rahul@example.com', 'Udupi', 'Karnataka', 'India'),
-    ('R4E5S6C7', 'Meenakshi Nair', '6543210987', 'meenakshi@example.com', 'Mulky', 'Karnataka', 'India'),
-    ('R8E9S1C2', 'Divya Patel', '5432109876', 'divya@example.com', 'Mangalore', 'Karnataka', 'India');
+    ('R1E2S3C4', 'Deveesh Shetty', '9876543210', 'deveesh@example.com', 'Mangalore', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Karnataka', 'India'),
+    ('R5E6S7C8', 'Rohan', '8765432109', 'rohan@example.com', 'Puttur', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Karnataka', 'India'),
+    ('R9E1S2C3', 'Rahul Singh', '7654321098', 'rahul@example.com', 'Udupi', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Karnataka', 'India'),
+    ('R4E5S6C7', 'Meenakshi Nair', '6543210987', 'meenakshi@example.com', 'Mulky', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Karnataka', 'India'),
+    ('R8E9S1C2', 'Divya Patel', '5432109876', 'divya@example.com', 'Mangalore', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Karnataka', 'India');
 
 INSERT INTO SKILLS (id, skill) 
 VALUES 

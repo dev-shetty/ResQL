@@ -1,4 +1,7 @@
 import { z } from "zod"
+import { pool } from "../config/db.js"
+import { LENGTH_OF_ID } from "../lib/constants.js"
+import { generate_nanoId, hashPassword } from "../lib/utils.js"
 
 /**
  * @route POST /auth/rescuer/create
@@ -8,10 +11,87 @@ import { z } from "zod"
  */
 
 const rescuerSchema = z.object({
-  id: z.string().default(nanoid()),
+  id: z.string().default(generate_nanoId(LENGTH_OF_ID, "RES")),
+  name: z.string(),
+  phone: z.string(),
+  email: z.string(),
+  password: z.string(),
+  city: z.string(),
+  state: z.string(),
+  country: z.string(),
+  skills: z.string().array().optional(),
 })
 
-async function createNewRescuer() {
+export async function createNewRescuer(req, res) {
   try {
-  } catch (error) {}
+    const parsedBody = rescuerSchema.safeParse(req.body)
+    if (!parsedBody.success) {
+      return res.status(400).json({ error: parsedBody.error })
+    }
+    const rescuer = parsedBody.data
+
+    const isRescuerPresentQuery = `
+      SELECT
+        CASE
+          WHEN COUNT(*) > 0 THEN true
+          ELSE false
+        END
+      FROM rescuer WHERE email = $1
+      `
+
+    const rescuerQuery =
+      "INSERT INTO rescuer (id, name, phone, email, password, city, state, country) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *"
+
+    const rescuerSkillQuery =
+      "INSERT INTO rescuer_skills (rescuer_id, skill_id) VALUES ($1, (SELECT id FROM skills WHERE skill= $2 )) RETURNING *"
+
+    const isRescuerPresent = await pool.query(isRescuerPresentQuery, [
+      rescuer.email,
+    ])
+
+    if (isRescuerPresent.rows[0].case) {
+      return res.status(400).json({ error: "Email already registered" })
+    }
+
+    // This needs to be awaited otherwise it returns promise
+    const hashedPassword = await hashPassword(rescuer.password)
+
+    // Inserts the rescuer
+    const rescuerResult = await pool.query(rescuerQuery, [
+      rescuer.id,
+      rescuer.name,
+      rescuer.phone,
+      rescuer.email,
+      hashedPassword,
+      rescuer.city,
+      rescuer.state,
+      rescuer.country,
+    ])
+
+    if (!rescuerResult) {
+      return res.status(400).json({ error: "Error creating rescuer" })
+    }
+
+    // Goes through all the skills and sends query to insert them individually in rescuer_skills table
+    if (rescuer.skills) {
+      for (const skill of rescuer.skills) {
+        const skill_result = await pool.query(rescuerSkillQuery, [
+          rescuer.id,
+          skill,
+        ])
+        if (!skill_result) {
+          return res
+            .status(400)
+            .json({ error: "Error creating rescuer skills" })
+        }
+      }
+    }
+
+    res.status(201).json({
+      message: "Rescuer created successfully",
+      rescuer: [rescuerResult.rows],
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
 }
