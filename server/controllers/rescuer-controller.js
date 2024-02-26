@@ -1,6 +1,6 @@
 /**
  * @route GET /rescuer/:id
- * @description Get a rescuer
+ * @description Get a rescuer and the disaster they are volunteering
  * @param {string} id - ID of the rescuer
  * @access private (rescuer, authority)
  */
@@ -28,8 +28,17 @@ export async function getRescuer(req, res) {
     }
 
     const query = "SELECT * FROM rescuer WHERE id = $1"
+    const disasterQuery = `
+    SELECT D.*
+    FROM RESCUER_DISASTER RD
+    JOIN DISASTER D ON RD.disaster_id = D.id
+    WHERE RD.rescuer_id = $1`
+
     const rescuer = await pool.query(query, [id])
-    return res.status(200).json({ rescuer: rescuer.rows })
+    const disasters = await pool.query(disasterQuery, [id])
+    return res
+      .status(200)
+      .json({ rescuer: rescuer.rows, disasters: disasters.rows })
   } catch (error) {
     return res.status(500).json({ error: error.message })
   }

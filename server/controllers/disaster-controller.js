@@ -47,14 +47,23 @@ export async function getDisasterByLocation(req, res) {
 export async function getDisasterById(req, res) {
   try {
     const { id } = req.params
-    console.log(id)
     if (!id) {
       return res.status(400).json({ error: "Id is required" })
     }
 
     const query = "SELECT * FROM disaster WHERE id = $1"
+    const rescuerQuery = `
+    SELECT R.*
+    FROM RESCUER_DISASTER RD
+    JOIN RESCUER R ON RD.rescuer_id = R.id
+    WHERE RD.disaster_id = $1`
+
     const disaster = await pool.query(query, [id])
-    return res.status(200).json({ disaster: disaster.rows })
+    const rescuers = await pool.query(rescuerQuery, [id])
+
+    return res
+      .status(200)
+      .json({ disaster: disaster.rows, rescuers: rescuers.rows })
   } catch (error) {
     return res.status(500).json({ error: error.message })
   }
@@ -82,8 +91,6 @@ export async function reportDisaster(req, res) {
       return res.status(400).json({ error: parsedDisaster.error })
     }
     const disasterData = parsedDisaster.data
-
-    console.log(disasterData)
 
     const query = `INSERT INTO disaster (id, authority_id, type, name, description, date, city, state, country, people_affected, severity) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`
     const disasterResult = await pool.query(query, [
