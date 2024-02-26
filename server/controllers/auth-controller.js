@@ -140,3 +140,13 @@ export async function login(req, res) {
     return res.status(500).json({ error: error.message })
   }
 }
+
+/**
+ * @route GET /auth/logout
+ * @description Logs out the user
+ * @access private
+ */
+
+export async function logout(req, res) {
+  res.clearCookie("access_token").json({ message: "Logged out successfully" })
+}
