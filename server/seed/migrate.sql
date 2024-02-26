@@ -66,8 +66,8 @@ CREATE TABLE RESCUER(
     name varchar(50) NOT NULL,
     phone varchar(10),
     email varchar(50) NOT NULL,
-    city varchar(20) NOT NULL,
     password text NOT NULL,
+    city varchar(20) NOT NULL,
     state varchar(20),
     country varchar(20)
 );
@@ -94,27 +94,27 @@ CREATE TABLE RESCUER_DISASTER(
 -- Inserting Data to the table
 INSERT INTO AUTHORITY (id, name, email, password, phone, city, state, country) 
 VALUES 
-    ('A1B2C3D4', 'Rahul Kumar', 'rahul@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', '9876543210', 'Mangalore', 'Karnataka', 'India'),
-    ('E5F6G7H8', 'Priya Sharma', 'priya@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', '8765432109', 'Puttur', 'Karnataka', 'India'),
-    ('I9J1K2L3', 'Amit Patel', 'amit@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', '7654321098', 'Udupi', 'Karnataka', 'India'),
-    ('M4N5O6P7', 'Deepika Singh', 'deepika@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', '6543210987', 'Mulky', 'Karnataka', 'India'),
-    ('Q8R9S1T2', 'Rajesh Gupta', 'rajesh@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', '5432109876', 'Mangalore', 'Karnataka', 'India');
+    ('A1B2C3D4', 'Rahul Kumar', 'rahul@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', '9876543210', 'mangalore', 'karnataka', 'india'),
+    ('E5F6G7H8', 'Priya Sharma', 'priya@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', '8765432109', 'puttur', 'karnataka', 'india'),
+    ('I9J1K2L3', 'Amit Patel', 'amit@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', '7654321098', 'udupi', 'karnataka', 'india'),
+    ('M4N5O6P7', 'Deepika Singh', 'deepika@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', '6543210987', 'mulky', 'karnataka', 'india'),
+    ('Q8R9S1T2', 'Rajesh Gupta', 'rajesh@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', '5432109876', 'angalore', 'karnataka', 'india');
 
 INSERT INTO DISASTER (id, authority_id, type, name, description, date, city, state, country, people_affected, severity) 
 VALUES 
-    ('D1E2S3A4', 'A1B2C3D4', 'Flood', 'Karnataka Floods', 'Heavy rainfall causing flooding in various parts of Karnataka.', '2024-02-20', 'Mangalore', 'Karnataka', 'India', 1000, 8),
-    ('F5I6R7E8', 'E5F6G7H8', 'Earthquake', 'Udupi Earthquake', 'A moderate earthquake struck Udupi, causing structural damage.', '2024-01-15', 'Udupi', 'Karnataka', 'India', 500, 6),
-    ('T9S1U2N3', 'Q8R9S1T2', 'Cyclone', 'Mangalore Cyclone', 'A cyclonic storm hit Mangalore, resulting in heavy rain and strong winds.', '2024-03-10', 'Mangalore', 'Karnataka', 'India', 1500, 9),
-    ('N4A5T6U7', 'I9J1K2L3', 'Wildfire', 'Puttur Wildfire', 'A wildfire broke out in the forests near Puttur, threatening nearby villages.', '2024-04-05', 'Puttur', 'Karnataka', 'India', 300, 7),
-    ('D8I9S1A2', 'M4N5O6P7', 'Drought', 'Mulky Drought', 'Persistent drought conditions in Mulky causing water scarcity.', '2024-05-20', 'Mulky', 'Karnataka', 'India', 2000, 10);
+    ('D1E2S3A4', 'A1B2C3D4', 'Flood', 'Karnataka Floods', 'Heavy rainfall causing flooding in various parts of Karnataka.', '2024-02-20', 'mangalore', 'karnataka', 'india', 1000, 8),
+    ('F5I6R7E8', 'E5F6G7H8', 'Earthquake', 'Udupi Earthquake', 'A moderate earthquake struck Udupi, causing structural damage.', '2024-01-15', 'udupi', 'karnataka', 'india', 500, 6),
+    ('T9S1U2N3', 'Q8R9S1T2', 'Cyclone', 'Mangalore Cyclone', 'A cyclonic storm hit Mangalore, resulting in heavy rain and strong winds.', '2024-03-10', 'mangalore', 'karnataka', 'india', 1500, 9),
+    ('N4A5T6U7', 'I9J1K2L3', 'Wildfire', 'Puttur Wildfire', 'A wildfire broke out in the forests near Puttur, threatening nearby villages.', '2024-04-05', 'puttur', 'karnataka', 'india', 300, 7),
+    ('D8I9S1A2', 'M4N5O6P7', 'Drought', 'Mulky Drought', 'Persistent drought conditions in Mulky causing water scarcity.', '2024-05-20', 'mulky', 'karnataka', 'india', 2000, 10);
 
 INSERT INTO ORGANIZATION (id, name, phone, email, password, city, state, country) 
 VALUES 
-    ('ORG1A234', 'Relief Foundation', '9876543210', 'info@relief.org', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Mangalore', 'Karnataka', 'India'),
-    ('ORG5I678', 'Helping Hands NGO', '8765432109', 'help@hands.org', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Puttur', 'Karnataka', 'India'),
-    ('ORG9E123', 'Emergency Aid Society', '7654321098', 'aid@society.org', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Udupi', 'Karnataka', 'India'),
-    ('ORG4U567', 'Disaster Relief Alliance', '6543210987', 'relief@alliance.org', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Mulky', 'Karnataka', 'India'),
-    ('ORGS9123', 'Humanitarian Group', '5432109876', 'humanity@group.org', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Mangalore', 'Karnataka', 'India');
+    ('ORG1A234', 'Relief Foundation', '9876543210', 'info@relief.org', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'mangalore', 'karnataka', 'india'),
+    ('ORG5I678', 'Helping Hands NGO', '8765432109', 'help@hands.org', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'puttur', 'karnataka', 'india'),
+    ('ORG9E123', 'Emergency Aid Society', '7654321098', 'aid@society.org', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'udupi', 'karnataka', 'india'),
+    ('ORG4U567', 'Disaster Relief Alliance', '6543210987', 'relief@alliance.org', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'mulky', 'karnataka', 'india'),
+    ('ORGS9123', 'Humanitarian Group', '5432109876', 'humanity@group.org', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'mangalore', 'karnataka', 'india');
 
 INSERT INTO RESOURCE (id, org_id, name, quantity)
 VALUES 
@@ -132,13 +132,13 @@ VALUES
     ('D4O5N6A7', 'ORG4U567', 'Vivaan Gupta', 2000.00),
     ('D8O9N1E2', 'ORGS9123', 'Ishaan Kumar', 6000.00);
 
-INSERT INTO RESCUER (id, name, phone, email, city, password, state, country) 
+INSERT INTO RESCUER (id, name, phone, email, password, city, state, country) 
 VALUES 
-    ('R1E2S3C4', 'Deveesh Shetty', '9876543210', 'deveesh@example.com', 'Mangalore', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Karnataka', 'India'),
-    ('R5E6S7C8', 'Rohan', '8765432109', 'rohan@example.com', 'Puttur', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Karnataka', 'India'),
-    ('R9E1S2C3', 'Rahul Singh', '7654321098', 'rahul@example.com', 'Udupi', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Karnataka', 'India'),
-    ('R4E5S6C7', 'Meenakshi Nair', '6543210987', 'meenakshi@example.com', 'Mulky', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Karnataka', 'India'),
-    ('R8E9S1C2', 'Divya Patel', '5432109876', 'divya@example.com', 'Mangalore', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'Karnataka', 'India');
+    ('R1E2S3C4', 'Deveesh Shetty', '9876543210', 'deveesh@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'mangalore', 'karnataka', 'india'),
+    ('R5E6S7C8', 'Rohan', '8765432109', 'rohan@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'puttur', 'karnataka', 'india'),
+    ('R9E1S2C3', 'Rahul Singh', '7654321098', 'rahul@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'udupi', 'karnataka', 'india'),
+    ('R4E5S6C7', 'Meenakshi Nair', '6543210987', 'meenakshi@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'mulky', 'karnataka', 'india'),
+    ('R8E9S1C2', 'Divya Patel', '5432109876', 'divya@example.com', '$2a$10$WsEBLDD6RwMh2eumanDUjuM5keCxTl3eQFRVDAGyDA5sT6ZnkYb1W', 'mangalore', 'karnataka', 'india');
 
 INSERT INTO SKILLS (id, skill) 
 VALUES 

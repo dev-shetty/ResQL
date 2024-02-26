@@ -51,9 +51,9 @@ export async function createNewRescuer(req, res) {
       rescuer.phone,
       rescuer.email,
       hashedPassword,
-      rescuer.city,
-      rescuer.state,
-      rescuer.country,
+      rescuer.city.toLowerCase(),
+      rescuer.state.toLowerCase(),
+      rescuer.country.toLowerCase(),
     ])
 
     if (!rescuerResult) {
