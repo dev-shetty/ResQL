@@ -10,6 +10,9 @@
     text-align: start;
     border-radius: 6px;
     transition: all 0.3s;
+    background-color: rgba(128, 128, 128, 0.093);
+    justify-content: center;
+    width: fit-content;
 }
 
 .disaster-section:hover{
@@ -19,6 +22,7 @@
 .disaster-image{
     width: 300px;
 }
+
 
 .location-section{
     display: flex;
