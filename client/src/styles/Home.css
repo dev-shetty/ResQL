@@ -1,0 +1,14 @@
+/* .home-page{
+    display: contents;
+    flex-direction: column;
+    align-items: center;
+} */
+
+
+.disaster-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+    padding: 30px;
+    margin-top: 30px;
+}
