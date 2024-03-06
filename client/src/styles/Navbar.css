@@ -1,50 +1,54 @@
-.navbar-section{
-    display: flex;
-    justify-content: space-between;
-    /* background: rgb(0,123,156);
+.navbar-section {
+  display: flex;
+  justify-content: space-between;
+  /* background: rgb(0,123,156);
     background: linear-gradient(90deg, rgba(0,123,156,1) 8%, rgba(0,28,79,1) 78%); */
-    width: 99vw;
-    padding: 20px;
-    align-items: center;
+  width: 99vw;
+  padding: 20px;
+  align-items: center;
 }
 
-.searchbar{
-    display: flex;
-    column-gap: 15px;
-    align-items: center;
-    border: solid 1px rgba(106, 106, 106, 0.631);
-    padding: 10px;
-    padding-left: 20px;
-    border-radius: 25px;
-    transition: all 0.3s;
-    margin-left: 45vw;
+.searchbar {
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+  border: solid 1px rgba(106, 106, 106, 0.631);
+  padding: 10px;
+  padding-left: 20px;
+  border-radius: 25px;
+  transition: all 0.3s;
+  margin-left: 45vw;
 }
 
-.navbar-title{
-    margin-left: 70px;
+.navbar-title {
+  margin-left: 70px;
 }
 
-.searchbar:hover{
-    padding-right: 40px;
-    border-color: rgb(106, 0, 255);
+.searchbar:hover {
+  padding-right: 40px;
+  border-color: rgb(106, 0, 255);
 }
 
-.searchbar-input{
-    background: none;
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
+.searchbar-input:focus {
+  box-shadow: none;
 }
 
-.searchbar-input::placeholder{
-    color: #fff;
+.searchbar-input {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
 }
 
-.login{
-    margin-right: 30px;
-    transition: 0.2s;
+.searchbar-input::placeholder {
+  color: #fff;
 }
 
-.login:hover{
-    border-bottom: solid 1px white;
+.login {
+  margin-right: 30px;
+  transition: 0.2s;
+}
+
+.login:hover {
+  border-bottom: solid 1px white;
 }
