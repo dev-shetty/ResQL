@@ -1,25 +1,36 @@
-import React from 'react';
-import { displayRandomImage } from '../displayRandomImage.js';
-import '../styles/DisasterCard.css'
+import React from "react";
+import { displayRandomImage } from "../displayRandomImage.js";
+import "../styles/DisasterCard.css";
+import { XSquare } from "lucide-react";
 
-function DisasterCard() {
+function DisasterCard({ showDisasterCard, setShowDisasterCard, disaster }) {
+  const handleClick = () => {
+    setShowDisasterCard(false);
+  };
+
   return (
-    <>
-        <div className='disaster-card'>
-            <img src={displayRandomImage()} className='disaster-image'/>
-            <h1 className='disaster-name'>Disaster Name</h1>
-            <h3>Disaster ID: x</h3>
-            <h3>Location</h3>
-            <h3>Disaster type</h3>
-            <h3>Date</h3>
-            <h3>Severity: x</h3>
-            <h3>People Affected: x</h3>
-            <p>Disaster description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore nostrum, odit ipsum laborum vero aliquid? Ullam, explicabo? Voluptate, debitis fugiat expedita eveniet laudantium nihil sequi, nemo itaque consequatur aut pariatur?</p>
-            <h3>Reported by: A</h3>
-
+    <section>
+      <div className="disaster-card">
+        <div className="close-button" onClick={handleClick}>
+          <XSquare />
         </div>
-    </>
-  )
+        <img src={displayRandomImage()} className="disaster-image" />
+        <h1 className="disaster-name">{disaster.name}</h1>
+        <h3>Disaster ID: {disaster.id}</h3>
+        <p>
+          {disaster.city}, {disaster.state}, {disaster.country}
+        </p>
+        <p>Type: {disaster.type}</p>
+        <p>Date: {Date(disaster.date)}</p>
+        <p>Severity: {disaster.severity}</p>
+        <p>People Affected: {disaster.people_affected}</p>
+        <p className="disaster-description">
+          Disaster description: {disaster.description}
+        </p>
+        <p>Reported by: {disaster.authority_id}</p>
+      </div>
+    </section>
+  );
 }
 
-export default DisasterCard
+export default DisasterCard;
