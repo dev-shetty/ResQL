@@ -69,3 +69,9 @@ a {
 .user-title {
   transition: 0.3s;
 }
+
+.error-message {
+  color: red;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}

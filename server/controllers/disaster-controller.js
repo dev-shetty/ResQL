@@ -107,6 +107,7 @@ export async function reportDisaster(req, res) {
       disasterData.severity,
     ])
     return res.status(201).json({
+      success: true,
       message: "Disaster reported successfully",
       disaster_id: disasterResult.rows[0].id,
     })

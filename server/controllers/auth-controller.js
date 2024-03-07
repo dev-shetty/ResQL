@@ -76,6 +76,7 @@ export async function createNewRescuer(req, res) {
     }
 
     res.status(201).json({
+      success: true,
       message: "Rescuer created successfully",
       rescuer: filterObject(rescuerResult.rows[0], ["password"]),
     })
@@ -133,6 +134,7 @@ export async function login(req, res) {
       })
       .status(200)
       .json({
+        success: true,
         message: "Logged in successfully",
         user: _user,
       })
@@ -148,5 +150,8 @@ export async function login(req, res) {
  */
 
 export async function logout(req, res) {
-  res.clearCookie("access_token").json({ message: "Logged out successfully" })
+  res.clearCookie("access_token").json({
+    success: true,
+    message: "Logged out successfully",
+  })
 }
