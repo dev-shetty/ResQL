@@ -4,6 +4,7 @@ import "../styles/RescuerRegForm.css"
 
 function RescuerRegForm() {
   const navigate = useNavigate()
+  const [error, setError] = React.useState("")
 
   const [details, setDetails] = React.useState({
     name: "",
@@ -33,6 +34,8 @@ function RescuerRegForm() {
         console.log(data)
         if (data.success) {
           navigate("/")
+        } else {
+          setError(data.error)
         }
       })
   }
@@ -81,6 +84,7 @@ function RescuerRegForm() {
           onChange={handleChange}
         />
       </div>
+      {error && <p className="error-message">{error}</p>}
       <button className="submit-button" onClick={register}>
         Register
       </button>

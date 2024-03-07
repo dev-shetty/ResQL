@@ -30,6 +30,9 @@ export async function getAllOrganizations(req, res) {
 export async function donate(req, res) {
   try {
     const parsedBody = donationSchema.safeParse(req.body)
+    if (!parsedBody.success) {
+      return res.status(400).json({ error: parsedBody.error })
+    }
     const donor = parsedBody.data
     const query = `INSERT INTO donation (id, org_id, name, amount, date) VALUES ($1, $2, $3, $4, $5) RETURNING *`
     const donation = await pool.query(query, [
