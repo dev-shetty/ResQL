@@ -33,3 +33,10 @@ export const disasterSchema = z.object({
   people_affected: z.number(),
   severity: z.number(),
 })
+
+export const donationSchema = z.object({
+  id: z.string().default(generate_nanoId(LENGTH_OF_ID, "DON")),
+  organization_id: z.string(),
+  name: z.string(),
+  amount: z.number(),
+})

@@ -58,6 +58,7 @@ CREATE TABLE DONATION(
     org_id varchar(8) REFERENCES ORGANIZATION(id) ON DELETE CASCADE,
     name varchar(50) NOT NULL,
     amount FLOAT NOT NULL,
+    date DATE NOT NULL,
     PRIMARY KEY(id, org_id)
 );
 
@@ -124,13 +125,13 @@ VALUES
     ('R4E5L6I7', 'ORG4U567', 'Blankets', 300),
     ('R8O9P1E2', 'ORGS9123', 'Clothes', 800);
 
-INSERT INTO DONATION (id, org_id, name, amount)
+INSERT INTO DONATION (id, org_id, name, amount, date)
 VALUES 
-    ('D1O2N3R4', 'ORG1A234', 'Aarav Patel', 5000.00),
-    ('D5O6N7A8', 'ORG5I678', 'Saanvi Reddy', 3000.00),
-    ('D9O1N2E3', 'ORG9E123', 'Aaradhya Sharma', 7000.00),
-    ('D4O5N6A7', 'ORG4U567', 'Vivaan Gupta', 2000.00),
-    ('D8O9N1E2', 'ORGS9123', 'Ishaan Kumar', 6000.00);
+    ('D1O2N3R4', 'ORG1A234', 'Deveesh Shetty', 5000.00, '2024-02-20'),
+    ('D5O6N7A8', 'ORG5I678', 'Rohan', 3000.00, '2024-01-15'),
+    ('D9O1N2E3', 'ORG9E123', 'Srujan Rai', 7000.00, '2024-03-10'),
+    ('D4O5N6A7', 'ORG4U567', 'Chinmaya Vittal', 2000.00, '2024-04-05'),
+    ('D8O9N1E2', 'ORGS9123', 'Akkil MG', 6000.00, '2024-05-20');
 
 INSERT INTO RESCUER (id, name, phone, email, password, city, state, country) 
 VALUES 
