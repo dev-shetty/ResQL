@@ -1,5 +1,7 @@
 import { pool } from "../config/db.js"
+import { LENGTH_OF_ID } from "../lib/constants.js"
 import { disasterSchema } from "../lib/schemas.js"
+import { generate_nanoId } from "../lib/utils.js"
 
 /**
  * @route GET /disaster
@@ -83,8 +85,8 @@ export async function reportDisaster(req, res) {
         .status(401)
         .json({ error: "Unauthorized, only authorities can report a disaster" })
     }
-
-    const disaster = { ...req.body, authority_id: user.id }
+    const disaster_id = generate_nanoId(LENGTH_OF_ID, "DIS")
+    const disaster = { ...req.body, authority_id: user.id, id: disaster_id }
 
     const parsedDisaster = disasterSchema.safeParse(disaster)
     if (!parsedDisaster.success) {

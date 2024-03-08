@@ -1,6 +1,7 @@
 import { pool } from "../config/db.js"
+import { LENGTH_OF_ID } from "../lib/constants.js"
 import { donationSchema } from "../lib/schemas.js"
-import { filterObject } from "../lib/utils.js"
+import { filterObject, generate_nanoId } from "../lib/utils.js"
 
 /**
  * @route GET /org
@@ -29,7 +30,11 @@ export async function getAllOrganizations(req, res) {
 
 export async function donate(req, res) {
   try {
-    const parsedBody = donationSchema.safeParse(req.body)
+    const donation_id = generate_nanoId(LENGTH_OF_ID, "DON")
+    const parsedBody = donationSchema.safeParse({
+      ...req.body,
+      id: donation_id,
+    })
     if (!parsedBody.success) {
       return res.status(400).json({ error: parsedBody.error })
     }

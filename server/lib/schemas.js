@@ -1,9 +1,8 @@
 import { z } from "zod"
-import { LENGTH_OF_ID, TYPES_OF_USER } from "./constants.js"
-import { generate_nanoId } from "./utils.js"
+import { TYPES_OF_USER } from "./constants.js"
 
 export const rescuerSchema = z.object({
-  id: z.string().default(generate_nanoId(LENGTH_OF_ID, "RES")),
+  id: z.string(),
   name: z.string(),
   phone: z.string(),
   email: z.string(),
@@ -21,7 +20,7 @@ export const loginSchema = z.object({
 })
 
 export const disasterSchema = z.object({
-  id: z.string().default(generate_nanoId(LENGTH_OF_ID, "DIS")),
+  id: z.string(),
   authority_id: z.string(),
   type: z.string(),
   name: z.string(),
@@ -35,7 +34,7 @@ export const disasterSchema = z.object({
 })
 
 export const donationSchema = z.object({
-  id: z.string().default(generate_nanoId(LENGTH_OF_ID, "DON")),
+  id: z.string(),
   organization_id: z.string(),
   name: z.string(),
   amount: z.number(),

@@ -1,7 +1,13 @@
 import bcryptjs from "bcryptjs"
 import { pool } from "../config/db.js"
+import { LENGTH_OF_ID } from "../lib/constants.js"
 import { loginSchema, rescuerSchema } from "../lib/schemas.js"
-import { filterObject, generateToken, hashPassword } from "../lib/utils.js"
+import {
+  filterObject,
+  generateToken,
+  generate_nanoId,
+  hashPassword,
+} from "../lib/utils.js"
 
 /**
  * @route POST /auth/rescuer/create
@@ -12,7 +18,9 @@ import { filterObject, generateToken, hashPassword } from "../lib/utils.js"
 
 export async function createNewRescuer(req, res) {
   try {
-    const parsedBody = rescuerSchema.safeParse(req.body)
+    const rescuer_id = generate_nanoId(LENGTH_OF_ID, "RES")
+    const parsedBody = rescuerSchema.safeParse({ ...req.body, id: rescuer_id })
+
     if (!parsedBody.success) {
       return res.status(400).json({ error: parsedBody.error })
     }
