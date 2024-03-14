@@ -52,3 +52,20 @@ export async function donate(req, res) {
     return res.status(500).json({ error: error.message })
   }
 }
+
+/**
+ * @route GET /org/donations
+ * @description Get all donations
+ * @access public
+ */
+
+export async function getDonations(req, res) {
+  try {
+    const query =
+      "SELECT D.name AS donor, O.name, D.amount FROM donation D, organization O WHERE D.org_id = O.id"
+    const donations = await pool.query(query)
+    return res.status(200).json({ donations: donations.rows })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}

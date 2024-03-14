@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
-import Disaster from "../Components/Disaster";
-import RequestDonation from "../Components/DonateAndRescue";
-import Navbar from "../Components/Navbar";
+import Disaster from "../Components/Disaster"
+import RequestDonation from "../Components/DonateAndRescue"
+import Navbar from "../Components/Navbar"
 
-import "../styles/Home.css";
+import "../styles/Home.css"
 
 function Home() {
-  const [disasters, setDisasters] = useState(null);
+  const [disasters, setDisasters] = useState(null)
 
   async function getDisasters() {
-    const response = await fetch("http://localhost:5000/disaster");
-    const data = await response.json();
+    const response = await fetch("http://localhost:5000/disaster")
+    const data = await response.json()
     if (response.ok) {
-      setDisasters(data);
+      setDisasters(data)
     } else {
-      setDisasters(null);
+      setDisasters(null)
     }
 
-    console.log(data);
+    console.log(data)
   }
 
   useEffect(() => {
-    getDisasters();
-  }, []);
+    getDisasters()
+  }, [])
 
   return (
     <div className="home-page">
@@ -44,7 +44,7 @@ function Home() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
