@@ -1,4 +1,5 @@
 import bcryptjs from "bcryptjs"
+import jwt from "jsonwebtoken"
 import { pool } from "../config/db.js"
 import { LENGTH_OF_ID } from "../lib/constants.js"
 import { loginSchema, rescuerSchema } from "../lib/schemas.js"
@@ -131,20 +132,17 @@ export async function login(req, res) {
 
     const _user = filterObject(user.rows[0], ["password"])
     const token = generateToken({
-      email: loginCreds.email,
-      type: loginCreds.type,
+      user: { ..._user, type: loginCreds.type },
     })
 
     res
-      .cookie("access_token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-      })
+      .cookie("access_token", token)
       .status(200)
       .json({
         success: true,
+        token: token,
         message: "Logged in successfully",
-        user: _user,
+        user: { ..._user, type: loginCreds.type },
       })
   } catch (error) {
     return res.status(500).json({ error: error.message })
@@ -162,4 +160,20 @@ export async function logout(req, res) {
     success: true,
     message: "Logged out successfully",
   })
+}
+/**
+ * @route GET /auth/decode
+ * @description Decodes the token and returns user information
+ * @access private
+ */
+
+export async function decodeToken(req, res) {
+  try {
+    const { token } = req.body
+    const data = jwt.verify(token, process.env.JWT_SECRET)
+
+    res.status(200).json({ success: true, message: "Token decoded", user })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
 }

@@ -1,6 +1,7 @@
 import express from "express"
 import {
   createNewRescuer,
+  decodeToken,
   login,
   logout,
 } from "../controllers/auth-controller.js"
@@ -11,5 +12,6 @@ const router = express.Router()
 router.post("/login/:type", login)
 router.post("/rescuer/create", createNewRescuer)
 router.get("/logout", authenticate, logout)
+router.post("/decode", decodeToken)
 
 export default router

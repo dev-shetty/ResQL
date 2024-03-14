@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Cookie from "universal-cookie"
 import "../styles/Login.css"
 
 function Login() {
+  const cookie = new Cookie()
   const navigate = useNavigate()
 
   const [user, setUser] = useState("Rescuer")
@@ -18,7 +20,6 @@ function Login() {
   }
 
   const login = () => {
-    console.log(loginCreds)
     fetch(`http://localhost:5000/auth/login/${user.toLowerCase()}`, {
       method: "POST",
       headers: {
@@ -28,8 +29,9 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         if (data.success) {
+          cookie.set("token", data.token, { path: "/" })
+          localStorage.setItem("user", JSON.stringify(data.user))
           navigate("/")
         } else {
           setError(data.error)

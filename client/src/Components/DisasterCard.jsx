@@ -1,12 +1,33 @@
-import React from "react";
-import { displayRandomImage } from "../displayRandomImage.js";
-import "../styles/DisasterCard.css";
-import { XSquare } from "lucide-react";
+import { XSquare } from "lucide-react"
+import { useAuth } from "../context/auth-provider.jsx"
+import { displayRandomImage } from "../displayRandomImage.js"
+import "../styles/DisasterCard.css"
 
+// eslint-disable-next-line react/prop-types
 function DisasterCard({ showDisasterCard, setShowDisasterCard, disaster }) {
+  const { auth } = useAuth()
   const handleClick = () => {
-    setShowDisasterCard(false);
-  };
+    setShowDisasterCard(false)
+  }
+
+  async function handleVolunteer() {
+    const response = await fetch(
+      `http://localhost:5000//rescuer/disaster/add/${disaster.id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.token}`,
+        },
+      }
+    )
+    const data = await response.json()
+    if (response.ok) {
+      console.log(data)
+    } else {
+      console.log(data)
+    }
+  }
 
   return (
     <section>
@@ -28,9 +49,12 @@ function DisasterCard({ showDisasterCard, setShowDisasterCard, disaster }) {
           Disaster description: {disaster.description}
         </p>
         <p>Reported by: {disaster.authority_id}</p>
+        {auth?.type === "rescuer" && (
+          <button onClick={handleVolunteer}>Volunteer for Disaster</button>
+        )}
       </div>
     </section>
-  );
+  )
 }
 
-export default DisasterCard;
+export default DisasterCard

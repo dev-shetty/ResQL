@@ -47,7 +47,7 @@ export async function getRescuer(req, res) {
 /**
  * @route POST /rescuer/disaster/add/:disaster_id
  * @description Volunteer for a disaster
- * @param {string} disaster-id - ID of the disaster
+ * @param {string} disaster_id - ID of the disaster
  * @access private (rescuer)
  */
 
