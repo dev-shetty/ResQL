@@ -21,7 +21,7 @@ function DisasterCard({ showDisasterCard, setShowDisasterCard, disaster }) {
           {disaster.city}, {disaster.state}, {disaster.country}
         </p>
         <p>Type: {disaster.type}</p>
-        <p>Date: {Date(disaster.date)}</p>
+        <p>Date: {disaster.date}</p>
         <p>Severity: {disaster.severity}</p>
         <p>People Affected: {disaster.people_affected}</p>
         <p className="disaster-description">

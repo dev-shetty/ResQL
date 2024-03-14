@@ -1,0 +1,71 @@
+.donation-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 50px;
+  justify-content: flex-start;
+}
+
+.donation-heading {
+  font-size: 2.2rem;
+  margin-bottom: 50px;
+  /* transition: all 0.2s; */
+}
+
+.donation-heading:hover {
+  border-bottom: solid 2px #fff;
+  /* font-size: 2.5rem; */
+}
+
+.image-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 30px;
+}
+
+.input-div {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  width: 500px;
+}
+
+.options-list {
+  padding: 10px;
+  background: none;
+  border: solid 1px rgba(106, 106, 106, 0.631);
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 225px;
+}
+
+.option {
+  background: #121212;
+  color: #fff;
+}
+
+.options-list:focus {
+  outline: none;
+}
+
+.attribute-div {
+  width: 200px;
+}
+
+.donate-button {
+  margin-top: 50px;
+  background: rgb(0, 25, 73);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 25, 73, 1) 33%,
+    rgba(0, 48, 130, 1) 100%
+  );
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.donate-button:focus {
+  outline: none;
+}

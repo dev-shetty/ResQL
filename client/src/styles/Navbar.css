@@ -6,6 +6,8 @@
   width: 99vw;
   padding: 20px;
   align-items: center;
+  position: absolute;
+  top: 0;
 }
 
 .searchbar {

@@ -8,7 +8,7 @@ function DonateAndRescue() {
       <div className="donate-section">
         <p>Help us to overcome the disaster</p>
         <p>Your contribution makes a huge difference!</p>
-        <Link to="/">
+        <Link to="/donate">
           <button className="button">Contribute for a cause</button>
         </Link>
       </div>
