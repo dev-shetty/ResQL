@@ -1,0 +1,37 @@
+.profile-div,
+.pic-and-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.parent-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-div {
+  border: solid 1px #5f5f5f;
+  width: max-content;
+  padding: 100px 200px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px #7e7e7e;
+}
+
+.pic-and-name {
+  font-size: 1.7rem;
+  margin-bottom: 30px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.icon-and-details {
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+}
