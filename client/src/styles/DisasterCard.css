@@ -46,3 +46,15 @@
   top: 10px;
   right: 10px;
 }
+
+.volunteer-button {
+  margin-top: 20px;
+  background: rgb(0, 25, 73);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 25, 73, 1) 33%,
+    rgba(0, 48, 130, 1) 100%
+  );
+  font-size: 1.2rem;
+  font-weight: bold;
+}
