@@ -1,14 +1,14 @@
-import { XSquare } from "lucide-react"
-import { useAuth } from "../context/auth-provider.jsx"
-import { displayRandomImage } from "../displayRandomImage.js"
-import "../styles/DisasterCard.css"
+import { XSquare } from "lucide-react";
+import { useAuth } from "../context/auth-provider.jsx";
+import { displayRandomImage } from "../displayRandomImage.js";
+import "../styles/DisasterCard.css";
 
 // eslint-disable-next-line react/prop-types
 function DisasterCard({ showDisasterCard, setShowDisasterCard, disaster }) {
-  const { auth } = useAuth()
+  const { auth } = useAuth();
   const handleClick = () => {
-    setShowDisasterCard(false)
-  }
+    setShowDisasterCard(false);
+  };
 
   async function handleVolunteer() {
     const response = await fetch(
@@ -20,12 +20,12 @@ function DisasterCard({ showDisasterCard, setShowDisasterCard, disaster }) {
           Authorization: `Bearer ${auth.token}`,
         },
       }
-    )
-    const data = await response.json()
+    );
+    const data = await response.json();
     if (response.ok) {
-      console.log(data)
+      console.log(data);
     } else {
-      console.log(data)
+      console.log(data);
     }
   }
 
@@ -50,11 +50,13 @@ function DisasterCard({ showDisasterCard, setShowDisasterCard, disaster }) {
         </p>
         <p>Reported by: {disaster.authority_id}</p>
         {auth?.type === "rescuer" && (
-          <button onClick={handleVolunteer}>Volunteer for Disaster</button>
+          <button className="volunteer-button" onClick={handleVolunteer}>
+            Serve as Rescuer
+          </button>
         )}
       </div>
     </section>
-  )
+  );
 }
 
-export default DisasterCard
+export default DisasterCard;

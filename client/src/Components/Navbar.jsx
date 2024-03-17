@@ -1,14 +1,15 @@
-import { Search } from "lucide-react"
-import { Link } from "react-router-dom"
-import { useAuth } from "../context/auth-provider"
-import "../styles/Navbar.css"
+import { Search } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth-provider";
+import "../styles/Navbar.css";
+import { CircleUser } from "lucide-react";
 
 function Navbar() {
-  const { auth } = useAuth()
+  const { auth } = useAuth();
 
   function logout() {
-    localStorage.removeItem("user")
-    window.location.reload()
+    localStorage.removeItem("user");
+    window.location.reload();
   }
 
   return (
@@ -24,13 +25,18 @@ function Navbar() {
             <h2 className="login">Login</h2>
           </Link>
         ) : (
-          <button className="login" onClick={logout}>
-            Logout
-          </button>
+          <div className="after-login-display">
+            <Link to="/profile">
+              <CircleUser size={40} />
+            </Link>
+            <h2 className="login" onClick={logout}>
+              Logout
+            </h2>
+          </div>
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
