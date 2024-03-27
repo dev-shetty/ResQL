@@ -32,6 +32,7 @@ function Login() {
         if (data.success) {
           cookie.set("token", data.token, { path: "/" })
           localStorage.setItem("user", JSON.stringify(data.user))
+          localStorage.setItem("token", data.token)
           navigate("/")
         } else {
           setError(data.error)

@@ -89,9 +89,12 @@ export async function reportDisaster(req, res) {
     const disaster = { ...req.body, authority_id: user.id, id: disaster_id }
 
     const parsedDisaster = disasterSchema.safeParse(disaster)
+
     if (!parsedDisaster.success) {
       return res.status(400).json({ error: parsedDisaster.error })
     }
+
+    console.log(parsedDisaster)
     const disasterData = parsedDisaster.data
 
     const query = `INSERT INTO disaster (id, authority_id, type, name, description, date, city, state, country, people_affected, severity) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`

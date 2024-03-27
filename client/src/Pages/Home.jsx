@@ -46,7 +46,7 @@ function Home() {
         </div>
         {auth?.type === "authority" && (
           <div className="report-disaster-section">
-            <Link to="/disaster/new">
+            <Link to="/disaster/report">
               <button className="button">Report a new Disaster</button>
             </Link>
           </div>
