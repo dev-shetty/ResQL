@@ -31,6 +31,7 @@ function DisasterRegForm() {
         <h3 className="attribute-div">Severity</h3>
         <input type="text" />
       </div>
+      <button>Report</button>
     </div>
   );
 }
