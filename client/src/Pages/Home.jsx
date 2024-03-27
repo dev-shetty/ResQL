@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
-import Disaster from "../Components/Disaster"
-import RequestDonation from "../Components/DonateAndRescue"
-import Navbar from "../Components/Navbar"
+import Disaster from "../Components/Disaster";
+import RequestDonation from "../Components/DonateAndRescue";
+import Navbar from "../Components/Navbar";
 
-import { Link } from "react-router-dom"
-import { useAuth } from "../context/auth-provider"
-import "../styles/Home.css"
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth-provider";
+import "../styles/Home.css";
 
 function Home() {
-  const [disasters, setDisasters] = useState(null)
-  const { auth } = useAuth()
-  console.log(auth)
+  const [disasters, setDisasters] = useState(null);
+  const { auth } = useAuth();
+  console.log(auth);
 
   async function getDisasters() {
-    const response = await fetch("http://localhost:5000/disaster")
-    const data = await response.json()
+    const response = await fetch("http://localhost:5000/disaster");
+    const data = await response.json();
     if (response.ok) {
-      setDisasters(data)
+      setDisasters(data);
     } else {
-      setDisasters(null)
+      setDisasters(null);
     }
   }
 
   useEffect(() => {
-    getDisasters()
-  }, [])
+    getDisasters();
+  }, []);
 
   return (
     <div className="home-page">
@@ -53,7 +53,7 @@ function Home() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
