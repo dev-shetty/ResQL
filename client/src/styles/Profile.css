@@ -35,3 +35,15 @@
   align-items: center;
   column-gap: 50px;
 }
+
+.resc-dis {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.icon-and-details:has(.resc-dis) {
+  display: grid;
+  column-gap: 50px;
+}

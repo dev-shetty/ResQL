@@ -1,8 +1,7 @@
-import { Search } from "lucide-react";
+import { CircleUser, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth-provider";
 import "../styles/Navbar.css";
-import { CircleUser } from "lucide-react";
 
 function Navbar() {
   const { auth } = useAuth();
@@ -16,10 +15,10 @@ function Navbar() {
     <div>
       <div className="navbar-section">
         <h1 className="navbar-title">ResQL</h1>
-        <div className="searchbar">
+        {/* <div className="searchbar">
           <Search />
           <input type="text" placeholder="Search" className="searchbar-input" />
-        </div>
+        </div> */}
         {auth === null ? (
           <Link to="/login">
             <h2 className="login">Login</h2>

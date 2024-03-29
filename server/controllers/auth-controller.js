@@ -131,6 +131,12 @@ export async function login(req, res) {
     }
 
     const _user = filterObject(user.rows[0], ["password"])
+
+    const disasters = await pool.query(
+      "SELECT disaster_id FROM rescuer_disaster WHERE rescuer_id = $1",
+      [_user.id]
+    )
+
     const token = generateToken({
       user: { ..._user, type: loginCreds.type },
     })
@@ -142,7 +148,11 @@ export async function login(req, res) {
         success: true,
         token: token,
         message: "Logged in successfully",
-        user: { ..._user, type: loginCreds.type },
+        user: {
+          ..._user,
+          type: loginCreds.type,
+          disasters: disasters.rows ?? "",
+        },
       })
   } catch (error) {
     return res.status(500).json({ error: error.message })

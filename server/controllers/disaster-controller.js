@@ -163,3 +163,31 @@ export async function editDisaster(req, res) {
     return res.status(500).json({ error: error.message })
   }
 }
+
+/**
+ * @route DELETE /disaster/:id
+ * @description Delete People affected in disaster
+ * @param {string} id - ID of the disaster
+ * @requires authority_id (fetched), people affected, severity
+ * @access private (authority)
+ */
+
+export async function deleteDisaster(req, res) {
+  try {
+    const user = req.user
+    if (!user || user.type !== "authority") {
+      return res
+        .status(401)
+        .json({ error: "Unauthorized, only authorities can delete disaster" })
+    }
+    const { id } = req.params
+    const query = "DELETE FROM disaster WHERE id = $1"
+    const disasterResult = await pool.query(query, [id])
+    if (!disasterResult) {
+      return res.status(400).json({ error: "Error deleting disaster" })
+    }
+    return res.status(200).json({ message: "Disaster deleted successfully" })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
